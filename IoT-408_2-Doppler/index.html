@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title>Wetterstation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<meta http-equiv="refresh" content="5">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+		<style>
+            		html{{font-family: Helvetica; display:inline-block; margin: 0px auto; text-align: center;}}
+            		h1{{padding: 2vh;}}
+            		p{{font-size: 1.5rem;}}
+		</style>
+	</head>
+
+	<body>
+		<div class="jumbotron text-center">
+  			<h1 class="text-primary">Wetterstation</h1>
+  			<p>Aktiv seit: {start_d}</p>
+		</div>
+
+		<div class="container">
+			<h1 class="col-12 text-primary">Aktuelle Messdaten</h1>
+			<p></p>
+
+			<table class="table table-bordered">
+			    <thead>
+			      <tr>
+			        <th>Typ</th>
+			        <th>Derzeitiger Wert</th>
+			        <th>Durchschnitt</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>Temperatur</td>
+			        <td>{temp_n} °C</td>
+			        <td>{temp_a} °C</td>
+			      </tr>
+			      <tr>
+			      	<td>Feuchtigkeit</td>
+			        <td>{hum_n} %</td>
+			        <td>{hum_a} %</td>
+			      </tr>
+			    </tbody>
+		  	</table>
+
+			<h1 class="col-12 text-primary">Statistiken</h1>
+
+			<div class="col">
+				<canvas id="line-chart"></canvas>
+			</div>
+
+			<div class="col">
+				<canvas id="line-chart-2"></canvas>
+			</div>
+
+		</div>
+
+		<script>
+  			new Chart(document.getElementById("line-chart"), {{
+			  type: 'line',
+			  data: {{
+			    labels: [0,1,2,3,4,5,6,7,8,9,10,11,20,13,14,15,16,17,18,19,20,21,22,23],
+			    datasets: [{{ 
+			        data: {temp_val},
+			        label: "Temperatur (in °C)",
+			        borderColor: "#ff0000",
+			        fill: false
+			      }}
+			    ]
+			  }},
+			  options: {{
+			    title: {{
+			      display: true,
+			      text: 'Temperatur (°C) über den Tag'
+			    }}
+			  }}
+			}});
+
+  			new Chart(document.getElementById("line-chart-2"), {{
+			  type: 'line',
+			  data: {{
+			    labels: [0,1,2,3,4,5,6,7,8,9,10,11,20,13,14,15,16,17,18,19,20,21,22,23],
+			    datasets: [{{ 
+			        data: {hum_val},
+			        label: "Temperatur (in °C)",
+			        borderColor: "#0000ff",
+			        fill: false
+			      }}
+			    ]
+			  }},
+			  options: {{
+			    title: {{
+			      display: true,
+			      text: 'Feuchtigkeit (%) über den Tag'
+			    }}
+			  }}
+			}});
+  		</script>
+	</body>
+</html>
+  
